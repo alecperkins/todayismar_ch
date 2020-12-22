@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Today is March…</title>
+        <meta charset="utf-8" />
+        <style>
+            body {
+                text-align: center;
+            }
+            h1 {
+                margin-top: 24vh;
+                font-weight: normal;
+                font-size: min(10vw, 5em);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Today is <span style="white-space: nowrap;">March <span id="date">…</span>.</span></h1>
+        <p>
+            <a href="https://www.nndoh.org/donate.html">
+                Navajo Nation COVID-19 Relief Fund
+            </a>
+        </p>
+        <script>
+            const date_el = document.getElementById('date');
+            const reference_date = new Date('2020-03-01');
+            const today = new Date();
+            const num_days = (today.getTime() - reference_date.getTime()) / (1000 * 60 * 60 * 24);
+            const march_date = Math.floor(num_days).toString();
+            let march_date_formatted = march_date;
+            switch (march_date.slice(-2)) {
+                case '01':
+                case '21':
+                case '31':
+                case '41': 
+                case '51': 
+                case '61': 
+                case '71': 
+                case '81': 
+                case '91': {
+                    march_date_formatted += 'st';
+                }
+                case '02':
+                case '22':
+                case '32':
+                case '42': 
+                case '52': 
+                case '62': 
+                case '72': 
+                case '82': 
+                case '92': {
+                    march_date_formatted += 'nd';
+                }
+                case '03':
+                case '23':
+                case '33':
+                case '43': 
+                case '53': 
+                case '63': 
+                case '73': 
+                case '83': 
+                case '93': {
+                    march_date_formatted += 'rd';
+                }
+                default: {
+                    march_date_formatted += 'th';
+                };
+            }
+            date_el.textContent = march_date_formatted;
+            document.title = `Today is March ${ march_date }, 2020`;
+        </script>
+    </body>
+</html>
